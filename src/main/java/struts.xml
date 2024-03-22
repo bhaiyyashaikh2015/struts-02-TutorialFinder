@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<include file="login.xml"/>
+
+	<package name="default" namespace="/tutorials" extends="struts-default">
+	<!-- If we do not add /tutorials in URL
+	error->	 There is no Action mapped for namespace [/] and action name [getTutorial] associated with context path [/struts-01].
+	  -->
+		<action name="getTutorial" class="com.struts.ex.actions.TutorialAction" method="getTutorial">
+			<result name="success">/success.jsp</result>
+			<result name="failure">/error.jsp</result>
+		</action>
+		
+		<action name="addTutorial" class="com.struts.ex.actions.TutorialAction" method="addTutorial">
+			<result name="success">/success.jsp</result>
+			<result name="failure">/error.jsp</result>
+		</action>
+	</package>
+	
+	<!-- Redirect using dummy class means do not mention class in action tag -->
+	<!-- <package name="seach" namespace="/" extends="struts-default">
+		<action name="search">
+			<result>/search.jsp</result>
+		</action>
+	</package> -->
+	
+	<!-- Action wildcards mapping -->
+	<!-- http://localhost:8080/struts-01/search111111111   (search+anything) -->
+	<package name="seach" namespace="/" extends="struts-default">
+		<action name="search*">
+			<result>/search.jsp</result>
+		</action>
+	</package>
+	
+</struts>  
